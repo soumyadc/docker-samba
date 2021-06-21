@@ -1,0 +1,26 @@
+version: "2.4"
+
+services:
+  sambasrv:
+    container_name: sambasrv
+    image: ubuntu
+    working_dir: "/work"
+    ports:
+      - "137:137"
+      - "138:138"
+      - "139:139"
+      - "445:445"
+    environment:
+      TZ: 'Asia/Kolkata'
+    volumes:
+      - './SHARED/:/work/SHARED'
+    cap_add:
+      - NET_ADMIN
+        #- SYS_ADMIN
+    restart: unless-stopped
+    cpu_count: 1
+    cpu_percent: 50
+    #cpu_set: 2
+    mem_limit: '1024M'
+    #command: ['echo', 'Hello World']
+    tty: true

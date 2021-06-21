@@ -1,0 +1,36 @@
+version: "2.4"
+
+services:
+  sambasrv:
+    container_name: sambasrv
+    image: soumyadc/rpi-samba
+    working_dir: "/app"
+    ports:
+      - "137:137"
+      - "138:138"
+      - "139:139"
+      - "445:445"
+    environment:
+            - TZ='Asia/Kolkata'
+              #- SMB_USER=rpi
+              #- SMB_PASSWD=1234
+    volumes:
+      - './SHARED/:/app/SHARED'
+        #- SHARED_volume:/app/SHARED
+    cap_add:
+      - NET_ADMIN
+        #- SYS_ADMIN
+    restart: unless-stopped
+    cpu_count: 1
+    cpu_percent: 50
+    mem_limit: '1024M'
+    #tty: true
+    command: ["sh", "samba.sh"]
+
+volumes:
+  SHARED_volume:
+    driver: local
+    driver_opts:
+       o: bind
+       type: none
+       device: './SHARED'
