@@ -3,7 +3,10 @@ Motivation and Ref: https://pimylifeup.com/raspberry-pi-samba/
 
 ## SAMBA on Alpine linux
 ---------------------
-- Install the basic samba package using `apk add samba`
+- Install the basic samba package using 
+```
+apk add samba
+```
   REF: https://wiki.alpinelinux.org/wiki/Setting_up_a_samba-server
 - create a smb.conf file
 
